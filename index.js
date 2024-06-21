@@ -22,8 +22,13 @@ io.on('connection', socket => {
   //Later on the user can change their username
   usersMap.set(socket.id, socket.id)
 
+  //Send this message to everyone except the person that just joined
+  socket.broadcast.emit('server message', 'A user joined the chat room!')
+
   socket.on('disconnect', () => {
     console.log('A user disconnected')
+
+    io.emit('server message', `${usersMap.get(socket.id)} left the chat room!`)
 
     //Remove the username for the user that just connected
     usersMap.delete(socket.id)

@@ -29,9 +29,14 @@ socket.on('chat message', (msg) => {
   createMessage(msg)
 })
 
-function createMessage(msg) {
+socket.on('server message', (msg) => {
+  createMessage(msg, 'centredText')
+})
+
+function createMessage(msg, className = '') {
   const item = document.createElement('li');
   item.textContent = msg;
+  item.className = className;
   messages.appendChild(item);
   window.scrollTo(0, document.body.scrollHeight)
 }
