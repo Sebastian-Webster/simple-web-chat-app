@@ -43,6 +43,7 @@ jobs:
        file: ./Dockerfile
        push: true
        tags: ${{ secrets.DOCKER_HUB_USERNAME }}/simple-web-chat-app:latest
+       platforms: linux/amd64,linux/arm64
 
    - name: Image digest
      run: echo ${{ steps.docker_build.outputs.digest }}
